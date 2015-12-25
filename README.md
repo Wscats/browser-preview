@@ -4,6 +4,8 @@
 
 Chrome 桌面快捷键 右键属性 在快捷方式标签下的"目标"框中加入 `--disable-web-security --user-data-dir`，重启浏览器即可
 
+![捕获](https://user-images.githubusercontent.com/17243165/66918205-66400680-f051-11e9-91c9-b687b1c95e0a.PNG)
+
 ## mac
 
 ```bash
