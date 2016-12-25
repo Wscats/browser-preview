@@ -32,6 +32,12 @@ google-chrome --disable-web-security
 
 # Github Commit
 
+|命令|作用|
+|-|-|
+|git --amend|简单地来说，可以理解成对最后一次提交做修正。|
+|git --no-edit||
+|git --date||
+
 有时需要修改上次`git commit`的时间，比如之前将代码提交到本地库中，现在想将这次提交推送到远程仓库，但是这次提交的时间显示还是昨天的时间，下面提供一个办法用于修改上次提交的时间：
 使用：
 
@@ -58,4 +64,5 @@ git commit --amend --date=`date -R`
 
 ```bash
 git commit --amend --date="Sun, 25 Dec 2016 19:42:09 +0800"
+git commit --amend --no-edit --date="Sun, 25 Dec 2016 19:42:09 +0800"
 ```
