@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="ajax()">ajax</button>
+    <script>
+        let ajax = () => {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    console.log(xmlhttp.responseText);
+                    // document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "https://www.baidu.com", true);
+            // xmlhttp.open("GET", "https://m.toutiao.com/list/?tag=__all__&ac=wap&count=20&format=json_raw&as=A1755D15AB9E3CD&cp=5D5B9E736C7D7E1&min_behot_time=0&_signature=ASzzEAAAXHxy2vl.IH95CAEs8w&i=", true);
+            xmlhttp.send();
+        }
+
+    </script>
+</body>
+
+</html>
