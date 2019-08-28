@@ -65,4 +65,5 @@ git commit --amend --date=`date -R`
 ```bash
 git commit --amend --date="Sun, 25 Dec 2016 19:42:09 +0800"
 git commit --amend --no-edit --date="Sun, 25 Dec 2016 19:42:09 +0800"
+git push origin master --force
 ```

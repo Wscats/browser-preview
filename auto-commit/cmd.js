@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const execute = (cmd) => {
+module.exports = (cmd) => {
     return new Promise((resolve, reject) => {
         exec(cmd, function (error, stdout, stderr) {
             if (error) {
@@ -13,4 +13,3 @@ const execute = (cmd) => {
         });
     })
 }
-module.exports = execute
