@@ -1,9 +1,9 @@
 const cmd = require('./cmd');
 const file = require('./file');
-//昨天的时间
-const today = new Date();
 let day = 1;
 const commit = async () => {
+    const today = new Date();
+    console.log(day);
     today.setTime(today.getTime() - day * 24 * 60 * 60 * 1000);
     let commitTime = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
     console.log(commitTime);
@@ -14,9 +14,8 @@ const commit = async () => {
     // await cmd(`git commit --amend --no-edit --date="${Date()}"`);
     await cmd(`git commit -m "${commitTime}" --no-edit --date="${commitTime}"`);
     if (day > 10) {
-        // await cmd('git push origin master');
+        await cmd('git push origin master');
     } else {
-        console.log(day);
         day += 1;
         commit();
     }
