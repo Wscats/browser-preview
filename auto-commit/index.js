@@ -1,7 +1,7 @@
 const cmd = require('./cmd');
 const file = require('./file');
-let day = 1;
 const commit = async () => {
+    let day = 1;
     const today = new Date();
     console.log(day);
     today.setTime(today.getTime() - day * 24 * 60 * 60 * 1000);
