@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 const index_1 = require("./index");
+const jade_1 = require("./jade");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
@@ -22,8 +23,13 @@ function activate(context) {
         vscode.window.showInformationMessage('Hi! Hi!');
         index_1.openUnsafeBrowser(path);
     });
+    let compileJadeFileCommand = vscode.commands.registerCommand('extension.transformJade', (path) => {
+        vscode.window.showInformationMessage('Hi! Hi! Hi!');
+        jade_1.compileJadeFile(path);
+    });
     context.subscriptions.push(disposable);
     context.subscriptions.push(openDefaultCommand);
+    context.subscriptions.push(compileJadeFileCommand);
 }
 exports.activate = activate;
 // this method is called when your extension is deactivated

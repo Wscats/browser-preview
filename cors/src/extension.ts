@@ -4,6 +4,10 @@ import * as vscode from 'vscode';
 import {
 	openUnsafeBrowser,
 } from './index';
+
+import {
+	compileJadeFile,
+} from './jade';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -27,8 +31,14 @@ export function activate(context: vscode.ExtensionContext) {
 		openUnsafeBrowser(path);
 	});
 
+	let compileJadeFileCommand = vscode.commands.registerCommand('extension.transformJade', (path) => {
+		vscode.window.showInformationMessage('Hi! Hi! Hi!');
+		compileJadeFile(path);
+	});
+
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(openDefaultCommand);
+	context.subscriptions.push(compileJadeFileCommand);
 }
 
 // this method is called when your extension is deactivated

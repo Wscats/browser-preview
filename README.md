@@ -2,7 +2,7 @@
 
 ## windows
 
-chrome 桌面快捷键 右键属性 在快捷方式标签下的"目标"框中加入 `--disable-web-security --user-data-dir`，重启浏览器即可
+Chrome 桌面快捷键 右键属性 在快捷方式标签下的"目标"框中加入 `--disable-web-security --user-data-dir`，重启浏览器即可
 
 ## mac
 
@@ -25,4 +25,4 @@ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args
 google-chrome --disable-web-security
 ```
 
-如果是跟本地文件通信，AJAX 或者 JSON, 你可以使用`-–allow-file-access-from-files flag`
+如果是跟本地文件通信，AJAX 或者 JSON，你可以使用`-–allow-file-access-from-files flag`

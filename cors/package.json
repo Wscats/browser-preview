@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onCommand:extension.helloWorld",
-    "onCommand:extension.openUnsafeBrowser"
+    "onCommand:extension.openUnsafeBrowser",
+    "onCommand:extension.transformJade"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -23,6 +24,10 @@
       {
         "command": "extension.openUnsafeBrowser",
         "title": "在非安全模式下打开Chrome浏览器"
+      },
+      {
+        "command": "extension.transformJade",
+        "title": "将Jade文件转化Html格式"
       }
     ],
     "menus": {
@@ -31,6 +36,11 @@
           "when": "resourceLangId == html",
           "command": "extension.openUnsafeBrowser",
           "group": "open-in-browser"
+        },
+        {
+          "when": "resourceLangId == jade",
+          "command": "extension.transformJade",
+          "group": "transform-jade"
         }
       ],
       "editor/context": [
@@ -38,6 +48,11 @@
           "when": "resourceLangId == html",
           "command": "extension.openUnsafeBrowser",
           "group": "open-in-browser"
+        },
+        {
+          "when": "resourceLangId == jade",
+          "command": "extension.transformJade",
+          "group": "transform-jade"
         }
       ],
       "editor/title/context": [
@@ -45,6 +60,11 @@
           "when": "resourceLangId == html",
           "command": "extension.openUnsafeBrowser",
           "group": "open-in-browser"
+        },
+        {
+          "when": "resourceLangId == jade",
+          "command": "extension.transformJade",
+          "group": "transform-jade"
         }
       ]
     }
