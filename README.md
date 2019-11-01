@@ -28,3 +28,32 @@ google-chrome --disable-web-security
 ```
 
 如果是跟本地文件通信，AJAX 或者 JSON，你可以使用`-–allow-file-access-from-files flag`
+
+
+# Github Commit
+
+有时需要修改上次`git commit`的时间，比如之前将代码提交到本地库中，现在想将这次提交推送到远程仓库，但是这次提交的时间显示还是昨天的时间，下面提供一个办法用于修改上次提交的时间：
+使用：
+```bash
+git commit --amend  --date="commit_time"
+```
+`commit_time`的格式比较难记，不过有个小技巧，我们可以先在命令行输入：
+
+```
+$ date -R
+Sat, 24 Dec 2016 18:12:09 +0800
+```
+
+这个命令的输出格式与`git commit –amend –date`命令要填写的日期格式相同，自己再稍加修改一下即可。
+如果我们只是想将上次`git commit`的时间 改为当前时间，可以使用以下两个命令：
+
+```
+git commit --amend --date="$(date -R)"  或
+git commit --amend --date=`date -R`
+```
+
+对于如何修改任意`git commit`的时间，也简单，按照date -R命令的输出格式自己构造`commit_time`即可。
+
+```
+git commit --amend --date="Sun, 25 Dec 2016 19:42:09 +0800"
+```
