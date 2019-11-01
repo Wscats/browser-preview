@@ -12,7 +12,7 @@ const commit = async () => {
     await cmd('git add .');
     // await cmd(`git commit --amend --no-edit --date="Sun, 25 Dec 2016 19:42:09 +0800"`);
     // await cmd(`git commit --amend --no-edit --date="${Date()}"`);
-    await cmd(`git commit -m="${commitTime}" --amend --no-edit --date="${commitTime}"`);
+    await cmd(`git commit -m "${commitTime}" --no-edit --date="${commitTime}"`);
     if (day > 10) {
         await cmd('git push origin master --force');
     } else {
