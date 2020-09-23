@@ -1,30 +1,16 @@
-# Chrome CORS
+# Preview In Default Browser
 
-## windows
+<a href="https://marketplace.visualstudio.com/items?itemName=Wscats.cors-browser"><img src="https://img.shields.io/badge/Download-+-orange" alt="Download" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=Wscats.cors-browser"><img src="https://img.shields.io/badge/Macketplace-v0.0X-brightgreen" alt="Macketplace" /></a>
+<a href="https://github.com/Wscats/cors"><img src="https://img.shields.io/badge/Github Page-Wscats-yellow" alt="Github Page" /></a>
+<a href="https://github.com/Wscats"><img src="https://img.shields.io/badge/Author-Eno Yao-blueviolet" alt="Eno Yao" /></a>
 
-Chrome 桌面快捷键 右键属性 在快捷方式标签下的"目标"框中加入 `--disable-web-security --user-data-dir`，重启浏览器即可
+Preview html file in browser↓
 
-![捕获](https://user-images.githubusercontent.com/17243165/66918205-66400680-f051-11e9-91c9-b687b1c95e0a.PNG)
+![DEMO](./assets/1.gif)
 
-## mac
+If you think it's useful, you can leave us a [message and like it](https://marketplace.visualstudio.com/items?itemName=Wscats.cors-browser&ssr=false#review-details), Your support is our driving force😀
 
-```bash
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security --user-data-dir
-```
+# License
 
-如果上面一句的不行就用这句：
-
-```bash
-open -a "Google Chrome" --args --disable-web-security --user-data-dir
-```
-```bash
-open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
-```
-
-## Linux
-
-```bash
-google-chrome --disable-web-security
-```
-
-如果是跟本地文件通信，AJAX 或者 JSON，你可以使用`-–allow-file-access-from-files flag`
+Preview In Default Browser is released under the [MIT](http://opensource.org/licenses/MIT).

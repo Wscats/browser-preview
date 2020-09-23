@@ -1,0 +1,97 @@
+{
+  "name": "cors-browser",
+  "displayName": "Preview In Default Browser",
+  "description": "🚀Preview html file in your default browser",
+  "version": "0.0.4",
+  "engines": {
+    "vscode": "^1.37.0"
+  },
+  "icon": "assets/logo.png",
+  "author": {
+    "name": "Eno Yao",
+    "email": "kalone.cool@gmail.com",
+    "url": "https://github.com/Wscats"
+  },
+  "publisher": "Wscats",
+  "preview": true,
+  "categories": [
+    "Other",
+    "Debuggers",
+    "Testing"
+  ],
+  "galleryBanner": {
+    "color": "#58bc58",
+    "theme": "dark"
+  },
+  "keywords": [
+    "preview",
+    "view",
+    "open",
+    "html",
+    "browser",
+    "chrome"
+  ],
+  "homepage": "https://github.com/Wscats/cors",
+  "bugs": {
+    "url": "https://github.com/Wscats/cors/issues/new"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wscats/cors"
+  },
+  "activationEvents": [
+    "onCommand:extension.previewInDefaultBrowser"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.previewInDefaultBrowser",
+        "title": "Preview In Default Browser"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceLangId == html",
+          "command": "extension.previewInDefaultBrowser",
+          "group": "Preview In Default Browser"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceLangId == html",
+          "command": "extension.previewInDefaultBrowser",
+          "group": "Preview In Default Browser"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "when": "resourceLangId == html",
+          "command": "extension.previewInDefaultBrowser",
+          "group": "Preview In Default Browser"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "vsce package",
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "yarn run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28",
+    "tslint": "^5.12.1",
+    "@types/node": "^10.12.21",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "commander": "^3.0.0",
+    "open": "^6.4.0"
+  }
+}
