@@ -7,7 +7,7 @@
 
 Preview html file in browser↓
 
-![DEMO](./assets/1.gif)
+![DEMO](./assets/2.gif)
 
 If you think it's useful, you can leave us a [message and like it](https://marketplace.visualstudio.com/items?itemName=Wscats.cors-browser&ssr=false#review-details), Your support is our driving force😀
 
