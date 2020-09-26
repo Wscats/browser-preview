@@ -1,8 +1,8 @@
 {
   "name": "cors-browser",
-  "displayName": "Browser View",
-  "description": "🚀Preview html file in your default browser",
-  "version": "0.0.6",
+  "displayName": "Open Browser Preview",
+  "description": "🚀Preview file in your default browser",
+  "version": "1.0.7",
   "engines": {
     "vscode": "^1.37.0"
   },
