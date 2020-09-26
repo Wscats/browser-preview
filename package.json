@@ -2,11 +2,11 @@
   "name": "cors-browser",
   "displayName": "Browser View",
   "description": "🚀Preview html file in your default browser",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.37.0"
   },
-  "icon": "assets/logo.png",
+  "icon": "assets/icon.png",
   "author": {
     "name": "Eno Yao",
     "email": "kalone.cool@gmail.com",
@@ -74,6 +74,14 @@
       ]
     }
   },
+  "keybindings": [
+    {
+      "command": "extension.previewInDefaultBrowser",
+      "key": "ctrl+f1",
+      "mac": "cmd+f1",
+      "when": "editorTextFocus"
+    }
+  ],
   "scripts": {
     "build": "vsce package",
     "vscode:prepublish": "yarn run compile",

@@ -5,9 +5,22 @@
 <a href="https://github.com/Wscats/cors"><img src="https://img.shields.io/badge/Github Page-Wscats-yellow" alt="Github Page" /></a>
 <a href="https://github.com/Wscats"><img src="https://img.shields.io/badge/Author-Eno Yao-blueviolet" alt="Eno Yao" /></a>
 
-Preview html file in browser↓
+Preview file in your default browser.
+
+# Context Menu
+
+Select `Preview In Default Browser` in context menu，preview file in browser↓
 
 ![DEMO](./assets/2.gif)
+
+# Command
+
+1. Open the command list `Press F1` or `Ctrl + Shift + P`.
+2. Select `Preview In Default Browser`.
+
+# Keybindings
+
+1. Press `Ctrl + F1`
 
 If you think it's useful, you can leave us a [message and like it](https://marketplace.visualstudio.com/items?itemName=Wscats.cors-browser&ssr=false#review-details), Your support is our driving force😀
 
