@@ -2,7 +2,7 @@
   "name": "cors-browser",
   "displayName": "Open Browser Preview",
   "description": "🚀Preview file in your default browser",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "engines": {
     "vscode": "^1.37.0"
   },
@@ -30,14 +30,14 @@
     "browser",
     "chrome"
   ],
-  "homepage": "https://github.com/Wscats/cors",
+  "homepage": "https://github.com/Wscats/browser-preview",
   "bugs": {
-    "url": "https://github.com/Wscats/cors/issues/new"
+    "url": "https://github.com/Wscats/browser-preview/issues/new"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wscats/cors"
+    "url": "https://github.com/Wscats/browser-preview"
   },
   "activationEvents": [
     "onCommand:extension.previewInDefaultBrowser"

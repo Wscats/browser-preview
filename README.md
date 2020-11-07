@@ -15,12 +15,12 @@ Select `Preview In Default Browser` in context menu, preview file in browser↓
 
 # Command
 
-1. Open the command list `Press F1` or `Ctrl+Shift+P`.
+1. Press `Ctrl+Shift+P` to open the command list.
 2. Select `Preview In Default Browser`.
 
 # Keybindings
 
-1. Press `Ctrl+F1`.
+1. Press `Ctrl+F1` in win or `Cmd+F1` in mac.
 
 If you think it's useful, you can leave us a [message and like it](https://marketplace.visualstudio.com/items?itemName=Wscats.cors-browser&ssr=false#review-details), Your support is our driving force😀
 
