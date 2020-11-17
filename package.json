@@ -2,7 +2,7 @@
   "name": "cors-browser",
   "displayName": "Open Browser Preview",
   "description": "🚀Preview file in your default browser",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "engines": {
     "vscode": "^1.37.0"
   },
@@ -50,6 +50,14 @@
         "title": "Preview In Default Browser"
       }
     ],
+    "keybindings": [
+      {
+        "command": "extension.previewInDefaultBrowser",
+        "key": "ctrl+f1",
+        "mac": "cmd+f1",
+        "when": "editorTextFocus"
+      }
+    ],
     "menus": {
       "explorer/context": [
         {
@@ -74,14 +82,6 @@
       ]
     }
   },
-  "keybindings": [
-    {
-      "command": "extension.previewInDefaultBrowser",
-      "key": "ctrl+f1",
-      "mac": "cmd+f1",
-      "when": "editorTextFocus"
-    }
-  ],
   "scripts": {
     "build": "vsce package",
     "vscode:prepublish": "yarn run compile",
