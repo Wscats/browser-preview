@@ -2,7 +2,7 @@
   "name": "cors-browser",
   "displayName": "Open Browser Preview",
   "description": "🚀Preview file in your default browser",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "engines": {
     "vscode": "^1.37.0"
   },
