@@ -28,7 +28,8 @@
     "open",
     "html",
     "browser",
-    "chrome"
+    "chrome",
+    "google"
   ],
   "homepage": "https://github.com/Wscats/browser-preview",
   "bugs": {

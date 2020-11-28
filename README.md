@@ -11,7 +11,9 @@ Preview file in your default browser.
 
 Select `Preview In Default Browser` in context menu, preview file in browser↓
 
-![DEMO](./assets/2.gif)
+<!-- ![DEMO](./assets/2.gif) -->
+![2](https://user-images.githubusercontent.com/17243165/100516702-a106ee80-31c0-11eb-8d85-89b1567810bb.gif)
+
 
 # Command
 
