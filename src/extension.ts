@@ -1,14 +1,83 @@
 import * as vscode from 'vscode';
-import {
-	openBrowser,
-} from './index';
+import * as http from 'http';
+import * as fs from 'fs';
+import * as path from 'path';
+import { openInBrowser } from './browser';
+import { WebviewPanel } from './webview';
 
-export function activate(context: vscode.ExtensionContext) {
-	console.log('Congratulations, your extension "openBrowser" is now active!');
-	let openDefaultCommand = vscode.commands.registerCommand('extension.previewInDefaultBrowser', (path) => {
-		openBrowser(path);
+let webviewPanel: WebviewPanel | undefined;
+let fileWatcher: vscode.FileSystemWatcher | undefined;
+
+export function activate(context: vscode.ExtensionContext): void {
+  // Command: open in external browser
+  const openBrowserCmd = vscode.commands.registerCommand(
+	'browserPreview.openInBrowser',
+	(uri?: vscode.Uri) => {
+	  const filePath = resolveFilePath(uri);
+	  if (!filePath) {
+		vscode.window.showErrorMessage('No HTML file is currently open.');
+		return;
+	  }
+	  openInBrowser(filePath, context);
+	}
+  );
+
+  // Command: open in in-editor Webview
+  const openWebviewCmd = vscode.commands.registerCommand(
+	'browserPreview.openInWebview',
+	(uri?: vscode.Uri) => {
+	  const filePath = resolveFilePath(uri);
+	  if (!filePath) {
+		vscode.window.showErrorMessage('No HTML file is currently open.');
+		return;
+	  }
+	  openInWebview(filePath, context);
+	}
+  );
+
+  context.subscriptions.push(openBrowserCmd, openWebviewCmd);
+}
+
+function resolveFilePath(uri?: vscode.Uri): string | undefined {
+  if (uri?.fsPath) {
+	return uri.fsPath;
+  }
+  const editor = vscode.window.activeTextEditor;
+  if (editor && editor.document.languageId === 'html') {
+	return editor.document.uri.fsPath;
+  }
+  return undefined;
+}
+
+function openInWebview(filePath: string, context: vscode.ExtensionContext): void {
+  const config = vscode.workspace.getConfiguration('browserPreview');
+  const autoRefresh = config.get<boolean>('autoRefresh', true);
+
+  if (webviewPanel) {
+	webviewPanel.reveal(filePath);
+  } else {
+	webviewPanel = new WebviewPanel(context, filePath);
+	webviewPanel.onDispose(() => {
+	  webviewPanel = undefined;
+	  fileWatcher?.dispose();
+	  fileWatcher = undefined;
 	});
-	context.subscriptions.push(openDefaultCommand);
+  }
+
+  // Setup file watcher for live reload
+  if (autoRefresh) {
+	fileWatcher?.dispose();
+	fileWatcher = vscode.workspace.createFileSystemWatcher(filePath);
+	fileWatcher.onDidChange(() => {
+	  webviewPanel?.refresh(filePath);
+	});
+	context.subscriptions.push(fileWatcher);
+  }
+}
+
+export function deactivate(): void {
+  webviewPanel?.dispose();
+  fileWatcher?.dispose();
 }
 
 export function deactivate() { }

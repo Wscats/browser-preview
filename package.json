@@ -1,10 +1,10 @@
 {
   "name": "cors-browser",
   "displayName": "Open Browser Preview",
-  "description": "🚀Preview file in your default browser",
-  "version": "1.0.11",
+  "description": "🚀 Preview HTML file in your default browser or in-editor Webview panel",
+  "version": "2.0.0",
   "engines": {
-    "vscode": "^1.37.0"
+    "vscode": "^1.85.0"
   },
   "icon": "assets/icon.png",
   "author": {
@@ -13,7 +13,6 @@
     "url": "https://github.com/Wscats"
   },
   "publisher": "Wscats",
-  "preview": true,
   "categories": [
     "Other",
     "Debuggers"
@@ -29,7 +28,8 @@
     "html",
     "browser",
     "chrome",
-    "google"
+    "webview",
+    "live-reload"
   ],
   "homepage": "https://github.com/Wscats/browser-preview",
   "bugs": {
@@ -41,65 +41,119 @@
     "url": "https://github.com/Wscats/browser-preview"
   },
   "activationEvents": [
-    "onCommand:extension.previewInDefaultBrowser"
+    "onLanguage:html",
+    "onCommand:browserPreview.openInBrowser",
+    "onCommand:browserPreview.openInWebview"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "extension.previewInDefaultBrowser",
-        "title": "Preview In Default Browser"
+        "command": "browserPreview.openInBrowser",
+        "title": "Preview: Open in Default Browser",
+        "icon": "$(browser)"
+      },
+      {
+        "command": "browserPreview.openInWebview",
+        "title": "Preview: Open in Editor Webview",
+        "icon": "$(open-preview)"
       }
     ],
     "keybindings": [
       {
-        "command": "extension.previewInDefaultBrowser",
+        "command": "browserPreview.openInBrowser",
         "key": "ctrl+f1",
         "mac": "cmd+f1",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceLangId == html"
+      },
+      {
+        "command": "browserPreview.openInWebview",
+        "key": "ctrl+shift+f1",
+        "mac": "cmd+shift+f1",
+        "when": "editorTextFocus && resourceLangId == html"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "when": "resourceLangId == html",
-          "command": "extension.previewInDefaultBrowser",
-          "group": "Preview In Default Browser"
+          "command": "browserPreview.openInBrowser",
+          "group": "browserPreview@1"
+        },
+        {
+          "when": "resourceLangId == html",
+          "command": "browserPreview.openInWebview",
+          "group": "browserPreview@2"
         }
       ],
       "editor/context": [
         {
           "when": "resourceLangId == html",
-          "command": "extension.previewInDefaultBrowser",
-          "group": "Preview In Default Browser"
-        }
-      ],
-      "editor/title/context": [
+          "command": "browserPreview.openInBrowser",
+          "group": "browserPreview@1"
+        },
         {
           "when": "resourceLangId == html",
-          "command": "extension.previewInDefaultBrowser",
-          "group": "Preview In Default Browser"
+          "command": "browserPreview.openInWebview",
+          "group": "browserPreview@2"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourceLangId == html",
+          "command": "browserPreview.openInWebview",
+          "group": "navigation"
         }
       ]
+    },
+    "configuration": {
+      "title": "Browser Preview",
+      "properties": {
+        "browserPreview.defaultBrowser": {
+          "type": "string",
+          "default": "default",
+          "enum": ["default", "chrome", "firefox", "safari", "edge"],
+          "description": "The browser to use when opening files externally."
+        },
+        "browserPreview.port": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 65535,
+          "description": "Local server port for serving HTML files. 0 = auto-assign."
+        },
+        "browserPreview.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically refresh the Webview panel when the file is saved."
+        }
+      }
     }
   },
   "scripts": {
-    "build": "vsce package",
-    "vscode:prepublish": "yarn run compile",
+    "vscode:prepublish": "npm run bundle",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "yarn run compile && node ./node_modules/vscode/bin/test"
+    "bundle": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify",
+    "bundle:dev": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "lint": "eslint src --ext .ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
   },
   "devDependencies": {
-    "typescript": "^3.3.1",
-    "vscode": "^1.1.28",
-    "tslint": "^5.12.1",
-    "@types/node": "^10.12.21",
-    "@types/mocha": "^2.2.42"
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^2.24.0",
+    "esbuild": "^0.20.0",
+    "eslint": "^9.0.0",
+    "mocha": "^10.3.0",
+    "typescript": "^5.4.0"
   },
   "dependencies": {
-    "commander": "^3.0.0",
-    "open": "^6.4.0"
+    "open": "^10.1.0"
   }
 }
