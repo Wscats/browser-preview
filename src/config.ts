@@ -1,7 +1,7 @@
 import { QuickPickItem } from "vscode";
 
 interface PickItem extends QuickPickItem {
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 const platform = process.platform;

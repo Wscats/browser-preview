@@ -7,7 +7,7 @@ function currentPageUri() {
         && vscode.window.activeTextEditor.document.uri;
 }
 
-export const openBrowser = (path: any): void => {
+export const openBrowser = (path: unknown): void => {
     let uri;
     if (path) {
         uri = path.fsPath;

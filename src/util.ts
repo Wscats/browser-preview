@@ -19,7 +19,7 @@ export const defaultBrowser = (): string => {
 
 export const open = (path: string, browser: string | string[]) => {
     opn(path, { app: browser })
-        .catch((err: any) => {
+        .catch((err: unknown) => {
             vscode.window.showErrorMessage(`Open browser failed!! Please check if you have installed the browser ${browser} correctly!`);
         });
 };
