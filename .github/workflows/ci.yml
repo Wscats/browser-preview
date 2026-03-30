@@ -1,39 +1,43 @@
-name: CI & Publish
+name: CI
 
 on:
   push:
     branches: [main, refactor]
   pull_request:
     branches: [main]
-  release:
-    types: [created]
 
 jobs:
-  lint-and-build:
+  ci:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run bundle
+    strategy:
+      matrix:
+        node-version: [20, 22]
 
-  publish:
-    needs: lint-and-build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'release'
     steps:
       - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run package
-      - name: Publish to VSCode Marketplace
-        run: npx vsce publish
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Build (esbuild bundle)
+        run: pnpm build
+
+      - name: Check bundle size (must be < 500KB)
+        run: |
+          SIZE=$(du -sk dist/ 2>/dev/null | cut -f1 || echo 0)
+          echo "Bundle size: ${SIZE}KB"
+          [ "$SIZE" -lt 500 ] || (echo "Bundle too large: ${SIZE}KB >= 500KB" && exit 1)
