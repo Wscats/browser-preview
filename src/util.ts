@@ -1,25 +1,35 @@
+/**
+ * Browser Preview - Utility functions.
+ * Browser name standardization and opening logic.
+ *
+ * @author Eno Yao
+ */
+
 import Config from './config';
 import * as vscode from 'vscode';
 
 const opn = require('open');
 
+/** Standardize a browser name to its platform-specific executable name. */
 export const standardizedBrowserName = (name: string = ''): string => {
-    let _name = name.toLowerCase();
-    const browser = Config.browsers.find(item => {
-        return item.acceptName.indexOf(_name) !== -1;
-    });
-
-    return browser ? browser.standardName : '';
+  const normalizedName = name.toLowerCase();
+  const browser = Config.browsers.find(
+    item => item.acceptName.indexOf(normalizedName) !== -1,
+  );
+  return browser ? browser.standardName : '';
 };
 
+/** Get the default browser from VS Code configuration. */
 export const defaultBrowser = (): string => {
-    const config = vscode.workspace.getConfiguration(Config.app);
-    return config ? config.default : '';
+  const config = vscode.workspace.getConfiguration(Config.app);
+  return config ? config.default : '';
 };
 
-export const open = (path: string, browser: string | string[]) => {
-    opn(path, { app: browser })
-        .catch((err: unknown) => {
-            vscode.window.showErrorMessage(`Open browser failed!! Please check if you have installed the browser ${browser} correctly!`);
-        });
+/** Open a path in the specified browser. */
+export const open = (targetPath: string, browser: string | string[]): void => {
+  opn(targetPath, { app: browser }).catch((_err: unknown) => {
+    vscode.window.showErrorMessage(
+      `Open browser failed!! Please check if you have installed the browser ${String(browser)} correctly!`,
+    );
+  });
 };
